@@ -2,6 +2,9 @@ const screen = document.querySelector(".calculator-screen");
 const numbers = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operator");
 const equal = document.querySelector(".equal-sign");
+const clear = document.querySelector(".all-clear");
+const opposite = document.querySelector(".opposite");
+const pourcentage = document.querySelector(".pourcentage");
 
 function add(num1, num2) {
   return num1 + num2;
@@ -37,6 +40,7 @@ numbers.forEach((number) =>
 let screenFirstValue = "";
 let operatorClicked = "";
 let screenUpdate;
+let revertNum;
 
 operators.forEach((operator) => {
   operator.addEventListener("click", () => {
@@ -62,3 +66,19 @@ equal.addEventListener("click", () => {
     screen.value = screenUpdate;
   } else return;
 });
+
+clear.addEventListener("click", () => {
+  screen.value = "";
+  screenFirstValue = "";
+  operatorClicked = "";
+});
+
+opposite.addEventListener("click", () => {
+  if (screen.value === "") return;
+  screen.value = parseInt(screen.value) * -1;
+});
+
+pourcentage.addEventListener(
+  "click",
+  () => (screen.value = parseInt(screen.value) / 100)
+);
