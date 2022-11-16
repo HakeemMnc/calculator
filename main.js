@@ -15,7 +15,7 @@ function subtract(num1, num2) {
 }
 
 function multiply(num1, num2) {
-  return num1 * num1;
+  return num1 * num2;
 }
 
 function divide(num1, num2) {
@@ -45,8 +45,12 @@ let revertNum;
 operators.forEach((operator) => {
   operator.addEventListener("click", () => {
     if (screen.value === "") return;
+    if (screenFirstValue.length > 0) {
+      equal.click();
+      operator.click();
+      return;
+    }
     screenFirstValue = screen.value;
-    console.log(screenFirstValue);
     operatorClicked = operator.value;
     screen.value = "";
   });
@@ -64,6 +68,8 @@ equal.addEventListener("click", () => {
       parseInt(screen.value)
     );
     screen.value = screenUpdate;
+    screenFirstValue = "";
+    operatorClicked = "";
   } else return;
 });
 
